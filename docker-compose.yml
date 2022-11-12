@@ -1,0 +1,59 @@
+version: '3'
+services:
+  webserver:
+    image: nginx
+    depends_on:
+      - app
+    ports:
+      - '${WEBSERVER_HTTP_PORT}:80'
+    restart: 'unless-stopped'
+    volumes:
+      - ./webserver/nginx.conf.d:/etc/nginx/conf.d
+      - ./webserver/ssl:/etc/ssl
+      - './app:/app'
+  app:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    restart: 'unless-stopped'
+    volumes:
+      - './app:/app'
+      - './webserver/php/app.ini:/usr/local/etc/php/conf.d/app.ini'
+      - './supervisor/supervisord.conf:/etc/supervisor/supervisord.conf'
+      - './supervisor/conf.d:/etc/supervisor/conf.d'
+    environment:
+      - "DB_USERNAME=${MYSQL_USER}"
+      - "DB_PASSWORD=${MYSQL_PASSWORD}"
+      - "DB_DATABASE=${MYSQL_DATABASE}"
+      - "DB_HOST=db"
+      - "APP_URL=http://localhost:${DB_PORT}"
+      - "DBEXCLUDE=performance_schema information_schema"
+      - "CRON_SCHEDULE=0 * * * *"
+      - "EXTRA_OPTS=--single-transaction"
+
+    depends_on:
+      - db
+  db:
+    image: mysql:8
+    restart: 'unless-stopped'
+    ports:
+      - '${DB_PORT}:3306'
+    volumes:
+      - './db:/var/lib/mysql'
+    env_file: './.env'
+    command: --sql_mode=""
+  mysqlbackup:
+    image: selim13/automysqlbackup:2.6-7-debian
+    volumes:
+      - './db_backups:/backup'
+    environment:
+      USERNAME: root
+      PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      DBHOST: db
+      DBEXCLUDE: "performance_schema information_schema"
+      CRON_SCHEDULE: "0 * * * *"
+      EXTRA_OPTS: "--single-transaction"
+    depends_on:
+      - db
