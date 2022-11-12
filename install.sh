@@ -14,7 +14,7 @@ docker-compose exec app php artisan migrate:fresh --seed && \
 docker-compose exec app npm install  && \
 docker-compose exec app npm run build && \
 docker-compose exec app php artisan storage:link && \
-chmod -R 0777 app/storage && \
+chmod -R 0744 app/storage && \
 cp "./Dockerfile-php8-supervisor" "./app/Dockerfile" && \
 docker-compose up -d --build && \
 docker-compose exec app supervisorctl reload
