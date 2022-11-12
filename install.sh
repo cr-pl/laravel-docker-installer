@@ -1,3 +1,4 @@
+cp -rf .env.clean .env && \
 printf "\n" >> .env && printf "MYSQL_PASSWORD=" >> .env && openssl rand -base64 21 >> .env && \
 printf "\n"  && printf "MYSQL_ROOT_PASSWORD=" >> .env && openssl rand -base64 21 >> .env  && \
 mkdir -p app && \ 
