@@ -8,15 +8,9 @@ In order to install a fresh instance of Laravel, simply clone the repo and run .
 - docker-compose
 
 ### Tips:
-Run install.sh as super user: 
+Run install.sh as super user: ```sudo install.sh```
 
-```sudo install.sh```
-
-or make sure that your user is in docker group, then run install:
-
-```
-install.sh
-```
+Or, make sure that your user is in docker group, then run install: ```install.sh```
 
 ### Info
 
