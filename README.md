@@ -12,7 +12,7 @@ Run install.sh as super user:
 
 ```sudo install.sh```
 
-or make sure that your user is in docker group, than run install:
+or make sure that your user is in docker group, then run install:
 
 ```
 install.sh
