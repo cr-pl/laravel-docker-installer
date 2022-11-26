@@ -20,4 +20,4 @@ The docker compose stack defines following services:
 - db ( mysql:8);
 - mysqlbackup (selim13/automysqlbackup).
 
-In the root folder of the repo, thre's a file named ".env.clean". Before running install.sh, you might want to edit this file in order to change the prts of the http server and mysql server that will we exposed to the host machine.
+In the root folder of the repo, thre's a file named ".env.clean". Before running install.sh, you might want to edit this file in order to change the prts of the http server and mysql server, that will we exposed to the host machine.
