@@ -1,5 +1,5 @@
 APP_NAME=laravel
-APP_ENV=development
+APP_ENV=local
 APP_KEY=base64:XmWcGYoc+w7Km8YVfuUIuAXEfmXpL4sDZt156sroAbc=
 APP_DEBUG=true
 DEBUGBAR_ENABLED=true
