@@ -14,7 +14,7 @@ Or, make sure that your user is in docker group, then run install: ```install.sh
 
 ### Info
 
-The docker compose stack defines following services:
+Docker compose stack defines following services:
 - webserver (nginx);
 - app (php:8.1-fpm-buster + composer + nodejs ). This is the place where it will be installed Laravel framework;
 - db ( mysql:8);
