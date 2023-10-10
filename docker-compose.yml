@@ -32,9 +32,6 @@ services:
       - "DBEXCLUDE=performance_schema information_schema"
       - "CRON_SCHEDULE=0 * * * *"
       - "EXTRA_OPTS=--single-transaction"
-
-    depends_on:
-      - db
   db:
     image: mysql:8
     restart: 'unless-stopped'
