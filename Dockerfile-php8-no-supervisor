@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-buster
+FROM php:8.2-fpm-buster
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
 	php composer-setup.php && \
 	php -r "unlink('composer-setup.php');" && \
@@ -17,6 +17,8 @@ RUN apt-get update &&\
     curl -sL https://deb.nodesource.com/setup_17.x | bash - &&\
     apt-get update &&\
     apt-get install -y --no-install-recommends nodejs
+
+RUN usermod -u 1000 www-data
 
 WORKDIR /app
 ENV PATH="$PATH:./node_modules/.bin"

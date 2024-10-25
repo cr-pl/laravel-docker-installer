@@ -1,4 +1,4 @@
 /app
 /db
-/mysqlbackup
+/db_backups
 .env
