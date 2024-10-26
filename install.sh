@@ -2,7 +2,7 @@
 if [ ! -f ".env" ]; then 
     cp -rf ./src/docker_env.clean .env && \ 
     printf "\n" >> .env && printf "MYSQL_PASSWORD=" >> .env && openssl rand -base64 21 >> .env && \ 
-    printf "\n"  && printf "MYSQL_ROOT_PASSWORD=" >> .env && openssl rand -base64 21 >> .env  && \ 
+    printf "\n"  && printf "MYSQL_ROOT_PASSWORD=" >> .env && openssl rand -base64 21 >> .env 
 fi 
 
 # create empty dir app
@@ -42,7 +42,7 @@ if [  "$(docker compose ps | grep app)" ] && [  "$(docker compose ps | grep db)"
     docker compose exec app npm run build && \ 
     docker compose exec app php artisan storage:link  
     printf "1" >> "./app/DB_CONNECTION_MYSQL" 
-fi 
+fi
 
 if test -d "app/app"; then 
     sudo chown -R :www-data ./app && sudo chmod -R 775 ./app/storage && sudo chmod -R 775 ./app/database 
