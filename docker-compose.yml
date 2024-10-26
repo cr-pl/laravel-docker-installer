@@ -24,10 +24,7 @@ services:
       - './supervisor/supervisord.conf:/etc/supervisor/supervisord.conf'
       - './supervisor/conf.d:/etc/supervisor/conf.d'
     environment:
-      #- "DB_USERNAME=${MYSQL_USER}"
       - "DB_PASSWORD=${MYSQL_PASSWORD}"
-      #- "DB_DATABASE=${MYSQL_DATABASE}"
-      #- "DB_HOST=db"
       - "APP_URL=http://localhost:${DB_PORT}"
       - "DBEXCLUDE=performance_schema information_schema"
       - "CRON_SCHEDULE=0 * * * *"
