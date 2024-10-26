@@ -14,15 +14,14 @@ USER root
 
 RUN apt-get update &&\
     apt-get install -y --no-install-recommends gnupg &&\
-    curl -sL https://deb.nodesource.com/setup_17.x | bash - &&\
+    curl -sL https://deb.nodesource.com/setup_23.x | bash - &&\
     apt-get update &&\
     apt-get install -y --no-install-recommends nodejs
+
+RUN usermod -u 1000 www-data
 
 WORKDIR /app
 ENV PATH="$PATH:./node_modules/.bin"
 
-RUN usermod -u 1000 www-data
-
 RUN apt-get update && apt-get install -y --no-install-recommends supervisor
-
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

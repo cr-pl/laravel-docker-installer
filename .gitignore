@@ -1,4 +1,5 @@
 /app
 /db
 /db_backups
+/supervisor/conf.d
 .env
